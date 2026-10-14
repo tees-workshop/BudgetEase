@@ -9,7 +9,6 @@ import {
   CircleHelp,
   CreditCard,
   Leaf,
-  Menu,
   ShieldCheck,
   Sparkles,
   Wallet,
