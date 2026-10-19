@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { ArrowDownRight, ArrowRight, ArrowUpRight, CalendarClock, CheckCircle2, Lightbulb, LoaderCircle, ShieldAlert, Sparkles, Target, TrendingUp } from "lucide-react";
+import { ArrowRight, ArrowUpRight, CalendarClock, Lightbulb, LoaderCircle, ShieldAlert, Sparkles, TrendingUp } from "lucide-react";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 
