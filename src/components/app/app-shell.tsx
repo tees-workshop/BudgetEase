@@ -5,7 +5,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import {
   BarChart3, ChevronDown, CircleHelp, CreditCard, LayoutDashboard,
-  Leaf, Lightbulb, LogOut, Menu, Settings, Target, X,
+  Leaf, Lightbulb, LogOut, Menu, MoreHorizontal, Settings, Target, X,
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 
@@ -21,6 +21,7 @@ export function AppShell({ children, userName }: { children: React.ReactNode; us
   const pathname = usePathname();
   const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [moreOpen, setMoreOpen] = useState(false);
   const [signingOut, setSigningOut] = useState(false);
 
   async function signOut() {
@@ -63,13 +64,18 @@ export function AppShell({ children, userName }: { children: React.ReactNode; us
           <div className="flex items-center gap-3"><button className="rounded-xl border border-[#E6EBE7] p-2 text-[#68736C] hover:bg-[#F5F7F5] lg:hidden" onClick={() => setMobileOpen(true)} aria-label="Open navigation"><Menu size={19} /></button><div><p className="text-xs text-[#7A847E]">Your money, your pace</p><p className="text-sm font-bold">Personal finances</p></div></div>
           <div className="flex items-center gap-2 rounded-full border border-[#E6EBE7] bg-white px-3 py-2 text-xs font-semibold text-[#68736C]"><span className="h-2 w-2 rounded-full bg-[#42D99A]" /> NGN · ₦</div>
         </header>
-        <main className="mx-auto max-w-[1440px] px-4 py-7 sm:px-7 sm:py-9 lg:px-9">{children}</main>
+        <main className="mx-auto max-w-[1440px] px-4 py-7 pb-24 sm:px-7 sm:py-9 sm:pb-24 lg:px-9 lg:pb-9">{children}</main>
       </div>
-      <nav className="fixed inset-x-0 bottom-0 z-30 grid grid-cols-4 border-t border-[#E6EBE7] bg-white/95 px-2 pb-[max(env(safe-area-inset-bottom),8px)] pt-2 backdrop-blur lg:hidden" aria-label="Mobile navigation">
+      <nav className="fixed inset-x-0 bottom-0 z-30 grid grid-cols-5 border-t border-[#E6EBE7] bg-white/95 px-2 pb-[max(env(safe-area-inset-bottom),8px)] pt-2 backdrop-blur lg:hidden" aria-label="Mobile navigation">
         {navigation.filter((item) => ["/dashboard", "/transactions", "/budgets", "/insights"].includes(item.href)).map(({ href, label, icon: Icon }) => {
           const active = pathname === href;
-          return <Link key={href} href={href} className={`flex flex-col items-center gap-1 rounded-lg py-1.5 text-[10px] font-semibold ${active ? "text-[#147D52]" : "text-[#7A847E]"}`}><Icon size={19} />{label}</Link>;
+          return <Link key={href} href={href} onClick={() => setMoreOpen(false)} className={`flex flex-col items-center gap-1 rounded-lg py-1.5 text-[10px] font-semibold ${active ? "text-[#147D52]" : "text-[#7A847E]"}`}><Icon size={19} />{label}</Link>;
         })}
+        <button type="button" onClick={() => setMoreOpen((open) => !open)} aria-expanded={moreOpen} className={`flex flex-col items-center gap-1 rounded-lg py-1.5 text-[10px] font-semibold ${moreOpen || pathname === "/analytics" || pathname.startsWith("/settings") ? "text-[#147D52]" : "text-[#7A847E]"}`}><MoreHorizontal size={19} />More</button>
+        {moreOpen && <div className="absolute bottom-full right-2 mb-2 w-48 rounded-2xl border border-[#E6EBE7] bg-white p-2 shadow-xl">
+          <Link href="/analytics" onClick={() => setMoreOpen(false)} className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-semibold text-[#56615A] hover:bg-[#F5F7F5]"><BarChart3 size={17} />Analytics</Link>
+          <Link href="/settings" onClick={() => setMoreOpen(false)} className="flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-semibold text-[#56615A] hover:bg-[#F5F7F5]"><Settings size={17} />Settings</Link>
+        </div>}
       </nav>
     </div>
   );
