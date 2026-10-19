@@ -55,11 +55,10 @@ export default function OnboardingPage() {
         return;
       }
 
-      const { error: profileError } = await supabase.from("profiles").upsert({
-        id: user.id,
+      const { error: profileError } = await supabase.from("profiles").update({
         display_name: name.trim(),
         currency: "NGN",
-      }, { onConflict: "id" });
+      }).eq("id", user.id);
 
       if (profileError) throw profileError;
       router.push("/dashboard");
