@@ -27,7 +27,7 @@ function SummaryCard({ label, value, hint, icon: Icon, tone }: {
   };
 
   return (
-    <article className="rounded-2xl border border-[#E6EBE7] bg-white p-5 sm:p-6">
+    <article className="motion-card rounded-2xl border border-[#E6EBE7] bg-white p-5 sm:p-6">
       <div className="flex items-center justify-between gap-3"><p className="text-sm font-medium text-[#68736C]">{label}</p><span className={`flex h-9 w-9 items-center justify-center rounded-xl ${tones[tone]}`}><Icon size={18} /></span></div>
       <p className="mt-4 text-2xl font-semibold tracking-[-0.045em] text-[#151A18] sm:text-3xl">{value}</p>
       <p className="mt-2 text-xs text-[#7A847E]">{hint}</p>
@@ -61,18 +61,18 @@ export default async function DashboardPage() {
 
   return (
     <AppShell userName={displayName}>
-      <div className="flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
+      <div className="animate-float-in flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
         <div><p className="text-sm font-medium text-[#147D52]">{monthLabel}</p><h1 className="mt-2 text-3xl font-semibold tracking-[-0.05em] sm:text-4xl">Good day, {displayName.split(" ")[0]}.</h1><p className="mt-2 text-sm leading-6 text-[#68736C]">Here's how your money is moving this month.</p></div>
-        <Link href="/transactions?new=1" className="inline-flex items-center justify-center gap-2 self-start rounded-xl bg-[#147D52] px-4 py-3 text-sm font-bold text-white transition hover:bg-[#106743] sm:self-auto"><Plus size={17} /> Add transaction</Link>
+        <Link href="/transactions?new=1" className="interactive-lift inline-flex items-center justify-center gap-2 self-start rounded-xl bg-[#147D52] px-4 py-3 text-sm font-bold text-white transition hover:bg-[#106743] sm:self-auto"><Plus size={17} /> Add transaction</Link>
       </div>
 
-      <section className="mt-7 grid gap-4 sm:grid-cols-2 xl:grid-cols-3" aria-label="Monthly summary">
+      <section className="motion-stagger mt-7 grid gap-4 sm:grid-cols-2 xl:grid-cols-3" aria-label="Monthly summary">
         <SummaryCard label="Money in" value={money.format(income)} hint="Income recorded this month" icon={ArrowDownRight} tone="green" />
         <SummaryCard label="Money out" value={money.format(expenses)} hint="Expenses recorded this month" icon={ArrowUpRight} tone="amber" />
         <SummaryCard label="Net cash flow" value={money.format(net)} hint="Income minus expenses · not bank balance" icon={Wallet} tone="neutral" />
       </section>
 
-      <section className="mt-6 grid gap-5 xl:grid-cols-[1.25fr_0.75fr]">
+      <section className="animate-float-in delay-150 mt-6 grid gap-5 xl:grid-cols-[1.25fr_0.75fr]">
         <article className="rounded-2xl border border-[#E6EBE7] bg-white p-5 sm:p-6">
           <div className="flex items-start justify-between gap-4"><div><h2 className="font-bold">Recent activity</h2><p className="mt-1 text-sm text-[#7A847E]">Your latest recorded transactions</p></div><Link href="/transactions" className="inline-flex shrink-0 items-center gap-1 text-xs font-bold text-[#147D52] hover:underline">View all <ArrowRight size={14} /></Link></div>
           {transactionsError ? <p role="alert" className="mt-6 rounded-xl bg-red-50 p-4 text-sm text-red-700">We couldn't load your transactions. Please refresh to try again.</p> : allTransactions.length === 0 ? (
@@ -82,9 +82,9 @@ export default async function DashboardPage() {
           )}
         </article>
 
-        <div className="space-y-5">
-          <article className="rounded-2xl bg-[#151A18] p-6 text-white"><span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-[#42D99A]"><Sparkles size={20} /></span><h2 className="mt-5 text-lg font-bold">Insights that mean something.</h2><p className="mt-2 text-sm leading-6 text-white/65">Once you've recorded enough activity, BudgetEase can help surface patterns based on your actual numbers—not guesses.</p><Link href="/insights" className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#42D99A] hover:underline">Explore insights <ArrowRight size={15} /></Link></article>
-          <article className="rounded-2xl border border-[#E6EBE7] bg-white p-6"><span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#E5F8EE] text-[#147D52]"><Target size={20} /></span><h2 className="mt-4 font-bold">Make a budget that fits.</h2><p className="mt-2 text-sm leading-6 text-[#68736C]">Set a monthly limit for an expense category and track it as you go.</p><Link href="/budgets" className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-[#147D52] hover:underline">Set up a budget <ArrowRight size={15} /></Link></article>
+        <div className="motion-stagger space-y-5">
+          <article className="motion-card rounded-2xl bg-[#151A18] p-6 text-white"><span className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-[#42D99A]"><Sparkles size={20} /></span><h2 className="mt-5 text-lg font-bold">Insights that mean something.</h2><p className="mt-2 text-sm leading-6 text-white/65">Once you've recorded enough activity, BudgetEase can help surface patterns based on your actual numbers—not guesses.</p><Link href="/insights" className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#42D99A] hover:underline">Explore insights <ArrowRight size={15} /></Link></article>
+          <article className="motion-card rounded-2xl border border-[#E6EBE7] bg-white p-6"><span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#E5F8EE] text-[#147D52]"><Target size={20} /></span><h2 className="mt-4 font-bold">Make a budget that fits.</h2><p className="mt-2 text-sm leading-6 text-[#68736C]">Set a monthly limit for an expense category and track it as you go.</p><Link href="/budgets" className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-[#147D52] hover:underline">Set up a budget <ArrowRight size={15} /></Link></article>
           <article className="rounded-2xl border border-[#E6EBE7] bg-white p-6"><span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#F5F7F5] text-[#68736C]"><BarChart3 size={20} /></span><h2 className="mt-4 font-bold">A clearer picture over time.</h2><p className="mt-2 text-sm leading-6 text-[#68736C]">Your dashboard uses the transactions you record. No bank connection or balance is assumed.</p></article>
         </div>
       </section>
