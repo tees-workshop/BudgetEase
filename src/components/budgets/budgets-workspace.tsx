@@ -1,8 +1,7 @@
 "use client";
 
 import { FormEvent, useCallback, useEffect, useMemo, useState } from "react";
-import { AlertCircle, ArrowRight, Check, LoaderCircle, Plus, Target, Trash2, Wallet } from "lucide-react";
-import Link from "next/link";
+import { AlertCircle, Check, LoaderCircle, Plus, Target, Trash2, Wallet } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
 
 type Category = { id: string; name: string; type: "income" | "expense"; color: string };
