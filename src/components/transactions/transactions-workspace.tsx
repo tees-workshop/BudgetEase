@@ -1,8 +1,7 @@
 "use client";
 
 import { FormEvent, useCallback, useEffect, useMemo, useState } from "react";
-import Link from "next/link";
-import { ArrowDownRight, ArrowRight, ArrowUpRight, CalendarDays, Check, ChevronDown, CircleAlert, Filter, LoaderCircle, Pencil, Plus, Search, Trash2, Wallet, X } from "lucide-react";
+import { ArrowDownRight, ArrowUpRight, CalendarDays, Check, ChevronDown, CircleAlert, Filter, LoaderCircle, Pencil, Plus, Search, Trash2, Wallet, X } from "lucide-react";
 import { useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 
