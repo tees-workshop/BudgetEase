@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { redirect } from "next/navigation";
 import { AppShell } from "@/components/app/app-shell";
 import { TransactionsWorkspace } from "@/components/transactions/transactions-workspace";
@@ -16,7 +17,7 @@ export default async function TransactionsPage() {
 
   return (
     <AppShell userName={displayName}>
-      <TransactionsWorkspace userId={user.id} />
+      <Suspense fallback={<div className="rounded-2xl border border-[#E6EBE7] bg-white p-10 text-center text-sm text-[#68736C]">Loading transactions…</div>}><TransactionsWorkspace userId={user.id} /></Suspense>
     </AppShell>
   );
 }
