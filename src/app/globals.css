@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --charcoal: #151a18;
-  --emerald: #147d52;
-  --mint: #42d99a;
-  --canvas: #f5f7f5;
-  --muted: #6d7771;
-  --line: #e6ebe7;
+  --charcoal: #15221a;
+  --emerald: #426f37;
+  --mint: #d8ff70;
+  --canvas: #f7f4eb;
+  --muted: #657066;
+  --line: #e2e0d5;
 }
 
 * { box-sizing: border-box; }
