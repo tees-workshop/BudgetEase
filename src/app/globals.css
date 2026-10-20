@@ -94,3 +94,41 @@ a, button, input, select, textarea {
     transition-duration: .01ms !important;
   }
 }
+
+/* BudgetEase editorial fintech direction */
+.dashboard-grid {
+  background-image: linear-gradient(rgba(66,217,154,.075) 1px, transparent 1px), linear-gradient(90deg, rgba(66,217,154,.075) 1px, transparent 1px);
+  background-size: 34px 34px;
+  mask-image: linear-gradient(100deg, transparent 5%, black 70%);
+}
+.dashboard-hero { isolation: isolate; }
+.dashboard-hero::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  right: -4rem;
+  bottom: -9rem;
+  width: 26rem;
+  height: 26rem;
+  border: 1px solid rgba(66,217,154,.18);
+  border-radius: 50%;
+  box-shadow: 0 0 0 34px rgba(66,217,154,.025), 0 0 0 78px rgba(66,217,154,.02), 0 0 0 126px rgba(66,217,154,.015);
+  pointer-events: none;
+}
+.metric-editorial { min-width: 0; }
+.metric-editorial::before {
+  content: "";
+  position: absolute;
+  top: 18px;
+  left: -2px;
+  width: 2px;
+  height: 24px;
+  background: var(--emerald);
+  box-shadow: 0 0 16px rgba(20,125,82,.25);
+}
+.spending-panel { box-shadow: 0 20px 55px rgba(13,23,18,.12); }
+.spending-panel .motion-card:hover { transform: none; }
+@media (max-width: 639px) {
+  .dashboard-hero::after { right: -13rem; bottom: -13rem; }
+  .metric-editorial { padding-left: 12px; }
+}
