@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --charcoal: #151a18;
-  --emerald: #147d52;
-  --mint: #42d99a;
-  --canvas: #f5f7f5;
-  --muted: #6d7771;
-  --line: #e6ebe7;
+  --charcoal: #15221a;
+  --emerald: #426f37;
+  --mint: #d8ff70;
+  --canvas: #f7f4eb;
+  --muted: #657066;
+  --line: #e2e0d5;
 }
 
 * { box-sizing: border-box; }
@@ -132,3 +132,4 @@ a, button, input, select, textarea {
   .dashboard-hero::after { right: -13rem; bottom: -13rem; }
   .metric-editorial { padding-left: 12px; }
 }
+\n\n/* Bold, warm BudgetEase palette: ink, paper, acid-lime and peach. */\n::selection { background: #D8FF70; color: #15221A; }\n.hero-grid { background-image: linear-gradient(rgba(216,255,112,.07) 1px, transparent 1px), linear-gradient(90deg, rgba(216,255,112,.07) 1px, transparent 1px); background-size: 38px 38px; mask-image: linear-gradient(to bottom, black, transparent 92%); }\n

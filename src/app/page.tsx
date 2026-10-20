@@ -1,147 +1,57 @@
 import Link from "next/link";
-import {
-  ArrowDownRight,
-  ArrowRight,
-  ArrowUpRight,
-  BarChart3,
-  Check,
-  ChevronDown,
-  CircleHelp,
-  CreditCard,
-  Leaf,
-  ShieldCheck,
-  Sparkles,
-  Wallet,
-} from "lucide-react";
+import { ArrowDownRight, ArrowRight, ArrowUpRight, BarChart3, Check, ChevronRight, CircleHelp, CreditCard, Leaf, LockKeyhole, Sparkles, Wallet } from "lucide-react";
 
-const transactions = [
-  { name: "Groceries", category: "Food & dining", date: "Today, 10:42 AM", amount: "−₦18,500", icon: "🛒", tone: "bg-orange-50" },
-  { name: "Freelance project", category: "Income", date: "Yesterday", amount: "+₦85,000", icon: "↗", tone: "bg-emerald-50" },
-  { name: "Ride to work", category: "Transport", date: "Oct 11, 2026", amount: "−₦4,200", icon: "🚗", tone: "bg-blue-50" },
+const sampleTransactions = [
+  { title: "Market run", category: "Food & groceries", amount: "−₦18,500", icon: "↘", tone: "bg-[#F9C7A8] text-[#592A16]" },
+  { title: "Client payment", category: "Freelance", amount: "+₦85,000", icon: "↗", tone: "bg-[#D8FF70] text-[#173B2A]" },
+  { title: "Ride home", category: "Transport", amount: "−₦4,200", icon: "↗", tone: "bg-[#C8D7FF] text-[#203B86]" },
 ];
 
 function Brand() {
-  return (
-    <Link href="/" className="flex items-center gap-2.5" aria-label="BudgetEase home">
-      <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#147D52] text-white">
-        <Leaf size={20} strokeWidth={2.5} />
-      </span>
-      <span className="text-lg font-bold tracking-[-0.04em] text-[#151A18]">BudgetEase<span className="text-[#147D52]">.</span></span>
-    </Link>
-  );
-}
-
-function MiniChart() {
-  const heights = [27, 38, 31, 49, 43, 61, 51, 73, 57, 66, 48, 84, 68, 91, 73, 100, 82, 70, 89, 62, 77, 53, 67, 42];
-  return (
-    <div className="flex h-[116px] items-end gap-1.5" aria-label="Illustrative monthly spending trend">
-      {heights.map((height, index) => (
-        <div key={index} className="flex-1 rounded-t-[4px]" style={{ height: `${height}%`, background: index > 17 ? "#42D99A" : index > 12 ? "#8BE9BC" : "#D7F5E5" }} />
-      ))}
-    </div>
-  );
+  return <Link href="/" className="group inline-flex items-center gap-2.5" aria-label="BudgetEase home"><span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#D8FF70] text-[#10231A] transition-transform group-hover:rotate-[-8deg]"><Leaf size={21} strokeWidth={2.7} /></span><span className="text-xl font-black tracking-[-0.07em] text-white">budgetease<span className="text-[#D8FF70]">.</span></span></Link>;
 }
 
 function DashboardPreview() {
-  return (
-    <div className="soft-shadow relative mx-auto w-full max-w-[560px] rounded-[24px] border border-[#E6EBE7] bg-white p-4 sm:p-5 animate-float-in delay-150">
-      <div className="mb-5 flex items-center justify-between border-b border-[#EEF1EE] pb-4">
-        <div className="flex items-center gap-2">
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#E5F8EE] text-[#147D52]"><Wallet size={17} /></span>
-          <div><p className="text-sm font-bold">Your overview</p><p className="text-[11px] text-[#78827C]">October 2026</p></div>
-        </div>
-        <span className="rounded-full bg-[#F5F7F5] px-3 py-1.5 text-[11px] font-medium text-[#6D7771]">This month <ChevronDown size={12} className="ml-1 inline" /></span>
-      </div>
-      <div className="grid grid-cols-3 gap-2.5">
-        <div className="rounded-2xl bg-[#F5F7F5] p-3 sm:p-4"><p className="text-[10px] font-medium text-[#6D7771] sm:text-xs">Income</p><p className="mt-2 text-base font-bold tracking-tight sm:text-xl">₦320k</p><p className="mt-1 text-[10px] text-[#147D52]"><ArrowUpRight size={12} className="mr-0.5 inline" />12.8%</p></div>
-        <div className="rounded-2xl bg-[#F5F7F5] p-3 sm:p-4"><p className="text-[10px] font-medium text-[#6D7771] sm:text-xs">Expenses</p><p className="mt-2 text-base font-bold tracking-tight sm:text-xl">₦142k</p><p className="mt-1 text-[10px] text-[#B36B28]"><ArrowDownRight size={12} className="mr-0.5 inline" />4.2%</p></div>
-        <div className="rounded-2xl bg-[#E5F8EE] p-3 sm:p-4"><p className="text-[10px] font-medium text-[#147D52] sm:text-xs">Cash flow</p><p className="mt-2 text-base font-bold tracking-tight text-[#147D52] sm:text-xl">₦178k</p><p className="mt-1 text-[10px] text-[#147D52]">Looking good</p></div>
-      </div>
-      <div className="mt-4 rounded-2xl border border-[#EEF1EE] p-4">
-        <div className="mb-3 flex items-center justify-between"><div><p className="text-xs font-bold">Spending over time</p><p className="mt-1 text-[10px] text-[#78827C]">A clearer picture, week by week</p></div><BarChart3 size={17} className="text-[#147D52]" /></div>
-        <MiniChart />
-        <div className="mt-2 flex justify-between text-[9px] text-[#8A938D]"><span>Oct 1</span><span>Oct 7</span><span>Oct 14</span><span>Oct 21</span><span>Oct 31</span></div>
-      </div>
-      <div className="mt-4 rounded-2xl border border-[#EEF1EE] p-4">
-        <div className="mb-3 flex items-center justify-between"><p className="text-xs font-bold">Recent activity</p><span className="text-[10px] font-semibold text-[#147D52]">View all</span></div>
-        <div className="space-y-3">
-          {transactions.map((transaction) => <div key={transaction.name} className="flex items-center gap-3"><span className={`flex h-9 w-9 items-center justify-center rounded-xl text-sm ${transaction.tone}`}>{transaction.icon}</span><div className="min-w-0 flex-1"><p className="truncate text-xs font-semibold">{transaction.name}</p><p className="mt-0.5 text-[10px] text-[#78827C]">{transaction.category}</p></div><div className={`text-xs font-bold ${transaction.amount.startsWith("+") ? "text-[#147D52]" : "text-[#151A18]"}`}>{transaction.amount}</div></div>)}
-        </div>
-      </div>
-      <div className="absolute -right-3 top-24 hidden items-center gap-2 rounded-2xl border border-[#E6EBE7] bg-white px-3 py-2.5 shadow-lg sm:flex"><span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#E5F8EE] text-[#147D52]"><Sparkles size={16} /></span><div><p className="text-[11px] font-bold">A little insight</p><p className="text-[10px] text-[#6D7771]">You're building a good habit.</p></div></div>
+  return <div className="relative mx-auto w-full max-w-[590px] animate-float-in delay-150">
+    <div className="absolute -right-5 -top-5 z-20 hidden rotate-6 rounded-2xl bg-[#D8FF70] px-4 py-3 text-[#14271C] shadow-xl sm:block"><p className="font-mono text-[9px] font-bold uppercase tracking-[.16em]">Your money mood</p><p className="mt-1 text-sm font-black">Looking up ↗</p></div>
+    <div className="absolute -bottom-5 -left-5 z-20 hidden -rotate-3 rounded-2xl border border-white/10 bg-[#F9C7A8] px-4 py-3 text-[#542B1D] shadow-xl sm:block"><p className="font-mono text-[9px] font-bold uppercase tracking-[.16em]">This month</p><p className="mt-1 text-sm font-black">₦178,000 left over</p></div>
+    <div className="overflow-hidden rounded-[2rem] border border-white/15 bg-[#F7F4EB] p-4 text-[#15221A] shadow-[0_35px_100px_rgba(0,0,0,.38)] sm:p-6">
+      <div className="flex items-center justify-between border-b border-[#D9DED3] pb-4"><div className="flex items-center gap-3"><span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#152A1E] text-[#D8FF70]"><Wallet size={19}/></span><div><p className="text-sm font-black tracking-tight">Your money, at a glance</p><p className="mt-0.5 text-[11px] text-[#778078]">A little more clarity, every day.</p></div></div><span className="rounded-full bg-white px-3 py-1.5 font-mono text-[10px] font-bold text-[#687369]">OCT ’26</span></div>
+      <div className="mt-5 rounded-[1.5rem] bg-[#152A1E] p-5 text-white sm:p-6"><div className="flex items-center justify-between"><p className="font-mono text-[10px] uppercase tracking-[.17em] text-white/55">Net cash flow</p><span className="rounded-full bg-[#D8FF70] px-2.5 py-1 text-[10px] font-black text-[#14271C]">+18.4%</span></div><p className="mt-3 text-4xl font-black tracking-[-.07em] sm:text-5xl">₦178,000<span className="text-[#D8FF70]">.</span></p><p className="mt-2 text-xs text-white/55">You earned more than you spent this month.</p><div className="mt-6 flex h-[94px] items-end gap-1.5 sm:gap-2">{[28,42,34,55,46,68,49,77,61,88,58,72,96,65,82,56,74,91,68,100,77,63,86,71].map((height,i)=><span key={i} className="flex-1 rounded-t-sm" style={{height:`${height}%`,background:i>18?"#D8FF70":i>11?"#7FAE5B":"#456A4F"}} />)}</div><div className="mt-2 flex justify-between font-mono text-[9px] text-white/35"><span>01 OCT</span><span>15 OCT</span><span>31 OCT</span></div></div>
+      <div className="mt-5 flex items-center justify-between"><div><p className="text-sm font-black">Recent money moves</p><p className="mt-1 text-[11px] text-[#778078]">Every naira has a story.</p></div><span className="text-xs font-bold text-[#466E39]">View all ↗</span></div>
+      <div className="mt-3 divide-y divide-[#E5E5DB]">{sampleTransactions.map((item)=><div key={item.title} className="flex items-center gap-3 py-3"><span className={`flex h-10 w-10 items-center justify-center rounded-xl text-base font-black ${item.tone}`}>{item.icon}</span><div className="min-w-0 flex-1"><p className="truncate text-xs font-bold">{item.title}</p><p className="mt-1 text-[10px] text-[#778078]">{item.category}</p></div><p className={`text-xs font-black ${item.amount.startsWith("+")?"text-[#3D7B3A]":"text-[#243128]"}`}>{item.amount}</p></div>)}</div>
     </div>
-  );
+  </div>;
 }
 
 const features = [
-  { icon: CreditCard, title: "Know where it goes", text: "Log everyday spending in seconds and keep all your money movements in one simple place." },
-  { icon: BarChart3, title: "See the bigger picture", text: "Understand your habits with clear summaries, category breakdowns, and monthly comparisons." },
-  { icon: Sparkles, title: "Make smarter next moves", text: "Get thoughtful, data-backed insights and realistic expense forecasts—without the guesswork." },
+  { n: "01", icon: CreditCard, title: "Know where it went.", text: "Log the everyday stuff without turning your life into a spreadsheet." },
+  { n: "02", icon: BarChart3, title: "Spot your patterns.", text: "See what is eating your money and what is actually working." },
+  { n: "03", icon: Sparkles, title: "Make your next move.", text: "Use clear, grounded insights to make more confident money decisions." },
 ];
 
 export default function HomePage() {
-  return (
-    <main className="overflow-hidden">
-      <header className="relative z-10 border-b border-[#EEF1EE] bg-white/90 backdrop-blur">
-        <div className="mx-auto flex h-[76px] max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-12">
-          <Brand />
-          <nav className="hidden items-center gap-8 md:flex" aria-label="Main navigation">
-            <Link href="#features" className="text-sm font-medium text-[#56615A] transition hover:text-[#147D52]">Features</Link>
-            <Link href="#how-it-works" className="text-sm font-medium text-[#56615A] transition hover:text-[#147D52]">How it works</Link>
-            <Link href="#security" className="text-sm font-medium text-[#56615A] transition hover:text-[#147D52]">Your privacy</Link>
-          </nav>
-          <div className="flex items-center gap-3">
-            <Link href="/login" className="hidden px-3 py-2 text-sm font-semibold text-[#3F4943] transition hover:text-[#147D52] sm:inline-flex">Log in</Link>
-            <Link href="/register" className="inline-flex items-center gap-2 rounded-full bg-[#147D52] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#106743] sm:px-5">Get started <ArrowRight size={15} /></Link>
-          </div>
-        </div>
-      </header>
-
-      <section className="relative">
-        <div className="hero-grid pointer-events-none absolute inset-0 -z-0" />
-        <div className="relative mx-auto grid max-w-7xl items-center gap-12 px-5 pb-20 pt-16 sm:px-8 sm:pb-24 sm:pt-20 lg:grid-cols-[1fr_1fr] lg:gap-10 lg:px-12 lg:pb-28 lg:pt-24">
-          <div className="animate-float-in">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#D9EFE2] bg-white/90 px-3.5 py-2 text-xs font-semibold text-[#147D52]"><span className="h-2 w-2 rounded-full bg-[#42D99A]" /> A more mindful money routine</div>
-            <h1 className="max-w-xl text-4xl font-semibold leading-[1.08] tracking-[-0.055em] text-[#151A18] sm:text-5xl lg:text-[64px]">Your money, <span className="text-[#147D52]">a little</span> more in control.</h1>
-            <p className="mt-6 max-w-lg text-base leading-7 text-[#68736C] sm:text-lg sm:leading-8">Understand your spending, build a budget that feels realistic, and make your next money decision with more confidence.</p>
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-              <Link href="/register" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#147D52] px-6 py-3.5 text-sm font-semibold text-white shadow-sm transition hover:-translate-y-0.5 hover:bg-[#106743]">Start your free account <ArrowRight size={16} /></Link>
-              <Link href="#features" className="inline-flex items-center justify-center gap-2 rounded-full border border-[#DDE4DE] bg-white px-6 py-3.5 text-sm font-semibold text-[#354039] transition hover:border-[#147D52]">Explore features <ArrowDownRight size={16} /></Link>
-            </div>
-            <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-[#69756D]"><span className="inline-flex items-center gap-1.5"><Check size={14} className="text-[#147D52]" /> Built for everyday life</span><span className="inline-flex items-center gap-1.5"><Check size={14} className="text-[#147D52]" /> Nigerian naira (₦)</span><span className="inline-flex items-center gap-1.5"><Check size={14} className="text-[#147D52]" /> Your money, your pace</span></div>
-          </div>
-          <div className="relative z-10 pt-2 lg:pl-4"><DashboardPreview /></div>
-        </div>
-      </section>
-
-      <section id="features" className="border-y border-[#EEF1EE] bg-[#F5F7F5] py-20 sm:py-24">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
-          <div className="mx-auto max-w-2xl text-center"><p className="text-xs font-bold uppercase tracking-[0.2em] text-[#147D52]">Less guessing, more knowing</p><h2 className="mt-4 text-3xl font-semibold tracking-[-0.045em] sm:text-4xl">A clearer view of your finances starts here.</h2><p className="mt-4 text-base leading-7 text-[#68736C]">The essentials to help you understand today, plan for tomorrow, and feel more in control along the way.</p></div>
-          <div className="mt-12 grid gap-4 md:grid-cols-3">
-            {features.map(({ icon: Icon, title, text }) => <article key={title} className="rounded-3xl border border-[#E5EBE6] bg-white p-7 transition duration-300 hover:-translate-y-1 hover:shadow-lg sm:p-8"><span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#E5F8EE] text-[#147D52]"><Icon size={22} /></span><h3 className="mt-6 text-lg font-bold tracking-tight">{title}</h3><p className="mt-3 text-sm leading-6 text-[#68736C]">{text}</p></article>)}
-          </div>
-        </div>
-      </section>
-
-      <section id="how-it-works" className="py-20 sm:py-24">
-        <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-2 lg:items-center lg:px-12">
-          <div><p className="text-xs font-bold uppercase tracking-[0.2em] text-[#147D52]">Simple by design</p><h2 className="mt-4 max-w-lg text-3xl font-semibold tracking-[-0.045em] sm:text-4xl">Small money habits can add up to a big difference.</h2><p className="mt-5 max-w-lg leading-7 text-[#68736C]">You don't need to be a finance expert. Start with what you earn and spend, then let the patterns become easier to see.</p><Link href="/register" className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-[#147D52] hover:gap-3">Take the first step <ArrowRight size={16} /></Link></div>
-          <div className="space-y-4">
-            {[{ n:"01", title:"Record what matters", body:"Add income and expenses as they happen, with categories that make sense to you." },{ n:"02", title:"Set a budget you can live with", body:"Choose monthly limits for the areas where you want a little more awareness." },{ n:"03", title:"Learn from your patterns", body:"Use your summaries and evidence-backed insights to plan your next month." }].map((step) => <div key={step.n} className="flex gap-5 rounded-2xl border border-[#E6EBE7] p-5 sm:p-6"><span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#F5F7F5] text-sm font-bold text-[#147D52]">{step.n}</span><div><h3 className="font-bold">{step.title}</h3><p className="mt-1.5 text-sm leading-6 text-[#68736C]">{step.body}</p></div></div>)}
-          </div>
-        </div>
-      </section>
-
-      <section id="security" className="bg-[#151A18] py-16 text-white sm:py-20">
-        <div className="mx-auto flex max-w-7xl flex-col gap-8 px-5 sm:px-8 md:flex-row md:items-center md:justify-between lg:px-12">
-          <div className="max-w-2xl"><span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white/10 text-[#42D99A]"><ShieldCheck size={22} /></span><h2 className="mt-5 text-2xl font-semibold tracking-tight sm:text-3xl">Your finances are personal. Your tools should respect that.</h2><p className="mt-3 max-w-xl text-sm leading-6 text-white/65">BudgetEase is being built with individual accounts and private financial records in mind. Your data should only be accessible to you.</p></div>
-          <Link href="/register" className="inline-flex shrink-0 items-center justify-center gap-2 self-start rounded-full bg-[#42D99A] px-6 py-3.5 text-sm font-bold text-[#10271D] transition hover:bg-[#69E7B0] md:self-center">Create your account <ArrowRight size={16} /></Link>
-        </div>
-      </section>
-
-      <footer className="border-t border-[#E6EBE7] bg-white">
-        <div className="mx-auto flex max-w-7xl flex-col gap-5 px-5 py-8 sm:px-8 md:flex-row md:items-center md:justify-between lg:px-12"><Brand /><p className="text-xs text-[#7A847E]">© 2026 BudgetEase. A calmer relationship with money.</p><div className="flex items-center gap-4 text-xs text-[#69756D]"><Link href="/login" className="hover:text-[#147D52]">Log in</Link><Link href="/register" className="hover:text-[#147D52]">Get started</Link><span className="inline-flex items-center gap-1"><CircleHelp size={13} /> Made for real life</span></div></div>
-      </footer>
-    </main>
-  );
+  return <main className="overflow-hidden bg-[#F7F4EB] text-[#15221A]">
+    <header className="relative z-10 border-b border-white/10 bg-[#10231A]">
+      <div className="mx-auto flex h-[78px] max-w-7xl items-center justify-between px-5 sm:px-8 lg:px-12"><Brand/><nav className="hidden items-center gap-8 md:flex" aria-label="Main navigation"><Link href="#features" className="text-sm font-semibold text-white/65 hover:text-[#D8FF70]">What you get</Link><Link href="#how-it-works" className="text-sm font-semibold text-white/65 hover:text-[#D8FF70]">How it works</Link><Link href="#security" className="text-sm font-semibold text-white/65 hover:text-[#D8FF70]">Your privacy</Link></nav><div className="flex items-center gap-3"><Link href="/login" className="hidden px-3 py-2 text-sm font-bold text-white/80 hover:text-white sm:inline-flex">Log in</Link><Link href="/register" className="inline-flex items-center gap-2 rounded-full bg-[#D8FF70] px-4 py-3 text-xs font-black text-[#14271C] transition hover:-translate-y-0.5 hover:bg-white sm:px-5">Get started <ArrowRight size={15}/></Link></div></div>
+    </header>
+    <section className="relative isolate overflow-hidden bg-[#10231A] text-white">
+      <div aria-hidden="true" className="pointer-events-none absolute -right-48 -top-40 -z-10 h-[620px] w-[620px] rounded-full border border-[#D8FF70]/10 shadow-[0_0_0_55px_rgba(216,255,112,.025),0_0_0_115px_rgba(216,255,112,.02),0_0_0_180px_rgba(216,255,112,.015)]"/><div aria-hidden="true" className="hero-grid pointer-events-none absolute inset-0 -z-10 opacity-50"/>
+      <div className="mx-auto grid max-w-7xl items-center gap-14 px-5 pb-24 pt-16 sm:px-8 sm:pb-28 sm:pt-20 lg:grid-cols-[.9fr_1.1fr] lg:gap-8 lg:px-12 lg:pb-32 lg:pt-24">
+        <div className="animate-float-in"><div className="mb-7 inline-flex items-center gap-2 rounded-full border border-[#D8FF70]/25 bg-[#D8FF70]/[.08] px-4 py-2 font-mono text-[10px] font-bold uppercase tracking-[.16em] text-[#D8FF70]"><span className="h-2 w-2 rounded-full bg-[#D8FF70] shadow-[0_0_12px_#D8FF70]"/> Money management, made human</div>
+          <h1 className="max-w-2xl text-[3.25rem] font-black leading-[.98] tracking-[-.075em] sm:text-6xl lg:text-[5.35rem]">Your money.<br/><span className="text-[#D8FF70]">Your rules.</span><br/>Less <span className="font-serif font-medium italic tracking-[-.06em] text-[#F9C7A8]">“where did it go?”</span></h1>
+          <p className="mt-7 max-w-lg text-base leading-7 text-white/65 sm:text-lg sm:leading-8">A refreshingly clear way to track your naira, build a budget that fits real life, and feel good about your next move.</p>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row"><Link href="/register" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#D8FF70] px-6 py-4 text-sm font-black text-[#14271C] shadow-[0_8px_35px_rgba(216,255,112,.13)] transition hover:-translate-y-1 hover:bg-white">Get your money together <ArrowRight size={17}/></Link><Link href="#features" className="inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-6 py-4 text-sm font-bold text-white transition hover:border-[#D8FF70]/60 hover:bg-white/5">See how it works <ChevronRight size={16}/></Link></div>
+          <div className="mt-8 flex flex-wrap gap-x-5 gap-y-3 font-mono text-[10px] font-bold uppercase tracking-[.08em] text-white/50"><span className="inline-flex items-center gap-2"><Check size={14} className="text-[#D8FF70]"/> Made for naira</span><span className="inline-flex items-center gap-2"><Check size={14} className="text-[#D8FF70]"/> Built for real life</span><span className="inline-flex items-center gap-2"><LockKeyhole size={13} className="text-[#D8FF70]"/> Your data stays yours</span></div>
+        </div><div className="relative z-10 lg:pl-2"><DashboardPreview/></div>
+      </div>
+      <div className="border-t border-white/10"><div className="mx-auto grid max-w-7xl grid-cols-3 px-5 py-5 sm:px-8 lg:px-12"><div className="border-r border-white/10 pr-3"><p className="font-mono text-[9px] uppercase tracking-[.16em] text-white/40">Made for</p><p className="mt-1 text-xs font-bold sm:text-sm">Everyday Nigerians</p></div><div className="border-r border-white/10 px-3 sm:px-6"><p className="font-mono text-[9px] uppercase tracking-[.16em] text-white/40">Currency</p><p className="mt-1 text-xs font-bold sm:text-sm">Naira, always ₦</p></div><div className="pl-3 sm:pl-6"><p className="font-mono text-[9px] uppercase tracking-[.16em] text-white/40">The goal</p><p className="mt-1 text-xs font-bold sm:text-sm">More clarity. Less stress.</p></div></div></div>
+    </section>
+    <section id="features" className="relative py-20 sm:py-28"><div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12"><div className="flex flex-col gap-5 md:flex-row md:items-end md:justify-between"><div><p className="font-mono text-[10px] font-black uppercase tracking-[.2em] text-[#4C7C36]">Less admin. More insight.</p><h2 className="mt-4 max-w-2xl text-4xl font-black leading-[1.02] tracking-[-.065em] sm:text-5xl">Your finances, without the finance-bro energy.</h2></div><p className="max-w-sm text-sm leading-6 text-[#657066]">No complicated setup. No judgement. Just a better handle on what comes in and what goes out.</p></div>
+      <div className="mt-12 grid gap-4 md:grid-cols-3">{features.map(({n,icon:Icon,title,text},i)=><article key={n} className={`group relative overflow-hidden rounded-[1.75rem] p-7 transition duration-300 hover:-translate-y-1.5 sm:p-8 ${i===1?"bg-[#D8FF70] text-[#15221A]":"border border-[#E2E2D7] bg-[#FFFCF5]"}`}><div className="flex items-start justify-between"><span className="font-mono text-xs font-black opacity-45">{n} / 03</span><span className={`flex h-12 w-12 items-center justify-center rounded-2xl ${i===1?"bg-[#152A1E] text-[#D8FF70]":"bg-[#152A1E] text-[#D8FF70]"}`}><Icon size={22}/></span></div><h3 className="mt-10 text-2xl font-black tracking-[-.05em]">{title}</h3><p className={`mt-3 text-sm leading-6 ${i===1?"text-[#33462C]":"text-[#657066]"}`}>{text}</p><div className="mt-8 flex items-center justify-between border-t border-current/15 pt-4"><span className="font-mono text-[9px] font-bold uppercase tracking-[.15em] opacity-60">A better money habit</span><ArrowUpRight size={18} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"/></div></article>)}</div>
+    </div></section>
+    <section id="how-it-works" className="bg-[#E9E8DC] py-20 sm:py-28"><div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-[.8fr_1.2fr] lg:items-center lg:px-12"><div><p className="font-mono text-[10px] font-black uppercase tracking-[.2em] text-[#4C7C36]">No big financial reset required</p><h2 className="mt-4 text-4xl font-black leading-[1.02] tracking-[-.065em] sm:text-5xl">Start small.<br/>Get clearer.<br/><span className="font-serif font-medium italic text-[#4C7C36]">Keep going.</span></h2><p className="mt-5 max-w-md text-sm leading-7 text-[#657066]">You don't need to be a spreadsheet person. Start with what you know; the patterns get clearer as you go.</p><Link href="/register" className="mt-7 inline-flex items-center gap-2 rounded-full bg-[#152A1E] px-5 py-3.5 text-sm font-bold text-white transition hover:bg-[#31573A]">Make your first move <ArrowRight size={16}/></Link></div><div className="space-y-3">{[{n:"01",title:"Track what comes in and goes out",body:"Record income and expenses with categories that make sense in your everyday life."},{n:"02",title:"Give your money a direction",body:"Set monthly budgets for the things you want to be more intentional about."},{n:"03",title:"Notice the patterns",body:"Use your actual entries and summaries to plan your next month with more confidence."}].map((step)=><div key={step.n} className="group flex gap-5 rounded-2xl border border-[#D5D7CA] bg-[#F7F4EB] p-5 transition hover:border-[#78955A] sm:p-6"><span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#D8FF70] font-mono text-sm font-black">{step.n}</span><div><h3 className="font-black tracking-tight">{step.title}</h3><p className="mt-2 text-sm leading-6 text-[#657066]">{step.body}</p></div><ChevronRight className="ml-auto mt-1 shrink-0 text-[#A0A79B] transition group-hover:translate-x-1 group-hover:text-[#4C7C36]" size={18}/></div>)}</div></div></section>
+    <section id="security" className="bg-[#F9C7A8] py-16 sm:py-20"><div className="mx-auto flex max-w-7xl flex-col gap-7 px-5 sm:px-8 md:flex-row md:items-center md:justify-between lg:px-12"><div className="max-w-2xl"><span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#152A1E] text-[#D8FF70]"><LockKeyhole size={22}/></span><h2 className="mt-5 text-3xl font-black leading-tight tracking-[-.055em] sm:text-4xl">Your money is personal.<br/>Your tools should be, too.</h2><p className="mt-3 max-w-xl text-sm leading-6 text-[#684B3F]">Individual accounts and private financial records are at the heart of BudgetEase. Your money story belongs to you.</p></div><Link href="/register" className="inline-flex shrink-0 items-center justify-center gap-2 self-start rounded-full bg-[#152A1E] px-6 py-4 text-sm font-black text-white transition hover:-translate-y-1 hover:bg-[#31573A] md:self-center">Build your money habit <ArrowRight size={16}/></Link></div></section>
+    <footer className="bg-[#10231A] text-white"><div className="mx-auto flex max-w-7xl flex-col gap-6 px-5 py-8 sm:px-8 md:flex-row md:items-center md:justify-between lg:px-12"><Brand/><p className="text-xs text-white/45">© 2026 BudgetEase. A calmer relationship with money.</p><div className="flex items-center gap-5 text-xs font-semibold text-white/65"><Link href="/login" className="hover:text-[#D8FF70]">Log in</Link><Link href="/register" className="hover:text-[#D8FF70]">Get started</Link><span className="inline-flex items-center gap-1.5"><CircleHelp size={13}/> Made for real life</span></div></div></footer>
+  </main>;
 }
