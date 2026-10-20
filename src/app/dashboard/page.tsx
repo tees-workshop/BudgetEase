@@ -27,9 +27,9 @@ function SummaryCard({ label, value, hint, icon: Icon, tone }: {
   };
 
   return (
-    <article className="motion-card rounded-2xl border border-[#E6EBE7] bg-white p-5 sm:p-6">
+    <article className="metric-editorial relative border-l-2 border-[#42D99A] bg-transparent py-4 pl-5 pr-3 sm:py-5">
       <div className="flex items-center justify-between gap-3"><p className="text-sm font-medium text-[#68736C]">{label}</p><span className={`flex h-9 w-9 items-center justify-center rounded-xl ${tones[tone]}`}><Icon size={18} /></span></div>
-      <p className="mt-4 text-2xl font-semibold tracking-[-0.045em] text-[#151A18] sm:text-3xl">{value}</p>
+      <p className="mt-4 break-words text-2xl font-semibold tracking-[-0.06em] text-[#151A18] sm:text-3xl">{value}</p>
       <p className="mt-2 text-xs text-[#7A847E]">{hint}</p>
     </article>
   );
@@ -80,17 +80,17 @@ export default async function DashboardPage() {
 
   return (
     <AppShell userName={displayName}>
-      <div className="animate-float-in relative isolate overflow-hidden rounded-[2rem] bg-[#111915] p-6 text-white shadow-[0_24px_70px_rgba(17,25,21,0.18)] sm:p-9 lg:p-10">
-        <div aria-hidden="true" className="pointer-events-none absolute -right-16 -top-24 -z-10 h-72 w-72 rounded-full bg-[#147D52]/45 blur-3xl" />
+      <div className="dashboard-hero animate-float-in relative isolate overflow-hidden rounded-[2rem] bg-[#0D1712] p-6 text-white shadow-[0_28px_80px_rgba(13,23,18,0.22)] sm:p-9 lg:p-11">
+        <div aria-hidden="true" className="pointer-events-none absolute -right-16 -top-24 -z-10 h-72 w-72 rounded-full bg-[#147D52]/55 blur-3xl" />\n        <div aria-hidden="true" className="dashboard-grid pointer-events-none absolute inset-0 -z-10 opacity-40" />\n        <div aria-hidden="true" className="pointer-events-none absolute right-[18%] top-[22%] -z-10 h-36 w-36 rounded-full border border-[#42D99A]/20 shadow-[0_0_0_24px_rgba(66,217,154,0.025),0_0_0_52px_rgba(66,217,154,0.02)]" />
         <div aria-hidden="true" className="pointer-events-none absolute bottom-[-9rem] right-1/3 -z-10 h-64 w-64 rounded-full bg-[#42D99A]/10 blur-3xl" />
         <div className="flex flex-wrap items-start justify-between gap-5">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.06] px-3 py-1.5 text-xs font-medium text-white/75">
+            <div className="inline-flex items-center gap-2 rounded-full border border-[#42D99A]/25 bg-[#42D99A]/[0.08] px-3 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-white/80">
               <span className="h-1.5 w-1.5 rounded-full bg-[#42D99A] shadow-[0_0_10px_rgba(66,217,154,0.9)]" />
               Your money, in focus
             </div>
             <p className="mt-5 text-sm text-white/55">{monthLabel}</p>
-            <h1 className="mt-1 text-3xl font-semibold tracking-[-0.05em] sm:text-4xl">Good day, {displayName.split(" ")[0]}.</h1>
+            <h1 className="mt-2 text-4xl font-semibold tracking-[-0.065em] sm:text-5xl lg:text-6xl">Good day, <span className="text-[#42D99A]">{displayName.split(" ")[0]}.</span></h1>
             <p className="mt-2 max-w-lg text-sm leading-6 text-white/65">A clearer view of what came in, what went out, and where you stand this month.</p>
           </div>
           <Link href="/transactions?new=1" className="interactive-lift inline-flex items-center justify-center gap-2 rounded-xl bg-[#42D99A] px-4 py-3 text-sm font-bold text-[#102219] shadow-[0_8px_24px_rgba(66,217,154,0.16)] hover:bg-[#65e5ae]">
@@ -100,11 +100,11 @@ export default async function DashboardPage() {
 
         <div className="mt-9 grid gap-7 border-t border-white/10 pt-6 md:grid-cols-[1.15fr_0.85fr] md:items-end md:gap-10">
           <div>
-            <p className="text-sm font-medium text-white/55">Net cash flow this month</p>
-            <p className="mt-2 break-words text-4xl font-semibold tracking-[-0.06em] sm:text-5xl lg:text-6xl">{money.format(net)}</p>
+            <p className="font-mono text-[10px] font-semibold uppercase tracking-[0.18em] text-[#42D99A]">Net cash flow / this month</p>
+            <p className="mt-3 break-words text-5xl font-semibold tracking-[-0.075em] sm:text-6xl lg:text-7xl">{money.format(net)}</p>
             <p className="mt-3 text-xs leading-5 text-white/45">Income minus expenses recorded in BudgetEase — not your bank balance.</p>
           </div>
-          <div className="rounded-2xl border border-white/10 bg-white/[0.045] p-4 sm:p-5">
+          <div className="relative rounded-[1.5rem] border border-white/10 bg-[#17251D]/90 p-4 sm:p-5">
             <div className="flex items-center justify-between gap-3 text-sm">
               <span className="text-white/65">Expenses vs. income</span>
               <span className="font-semibold text-[#42D99A]">{income > 0 ? `${Math.round(expenseShare)}%` : "—"}</span>
@@ -121,31 +121,31 @@ export default async function DashboardPage() {
         </div>
       </div>
 
-      <section className="motion-stagger mt-5 grid gap-4 sm:grid-cols-3" aria-label="Monthly summary">
+      <section className="motion-stagger mt-6 grid gap-x-5 gap-y-2 border-y border-[#DCE5DE] py-3 sm:grid-cols-3" aria-label="Monthly summary">
         <SummaryCard label="Money in" value={money.format(income)} hint="Income recorded this month" icon={ArrowDownRight} tone="green" />
         <SummaryCard label="Money out" value={money.format(expenses)} hint="Expenses recorded this month" icon={ArrowUpRight} tone="amber" />
         <SummaryCard label="Net cash flow" value={money.format(net)} hint="Income minus expenses" icon={Wallet} tone={net >= 0 ? "green" : "amber"} />
       </section>
 
       <section className="mt-5 grid gap-5 xl:grid-cols-[0.9fr_1.1fr]">
-        <article className="motion-card rounded-3xl border border-[#E6EBE7] bg-white p-5 sm:p-6">
+        <article className="spending-panel motion-card rounded-[1.8rem] border border-[#1F3328] bg-[#111B15] p-5 text-white sm:p-6">
           <div className="flex items-start justify-between gap-4">
-            <div><p className="text-xs font-semibold uppercase tracking-[0.14em] text-[#147D52]">Spending pulse</p><h2 className="mt-2 text-xl font-semibold tracking-tight">Last 7 days</h2><p className="mt-1 text-sm text-[#7A847E]">Daily expenses you’ve recorded</p></div>
-            <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#E5F8EE] text-[#147D52]"><BarChart3 size={20} /></span>
+            <div><p className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-[#42D99A]">Spending pulse / 07 days</p><h2 className="mt-2 text-2xl font-semibold tracking-[-0.04em]">Where the money moved.</h2><p className="mt-1 text-sm text-white/50">Daily expenses you’ve recorded</p></div>
+            <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-[#42D99A]/10 text-[#42D99A]"><BarChart3 size={20} /></span>
           </div>
           <div className="mt-7 flex h-36 items-end gap-2 sm:gap-3" role="img" aria-label={`Expenses over the last seven days total ${money.format(weeklyExpenses)}`}>
             {lastSevenDays.map((day, index) => (
               <div key={day.key} className="flex h-full min-w-0 flex-1 flex-col items-center justify-end gap-2">
-                <div className="flex h-full w-full items-end overflow-hidden rounded-t-lg bg-[#F1F5F1]">
-                  <div className={`w-full rounded-t-lg transition-[height] duration-700 ${index === 6 ? "bg-gradient-to-t from-[#147D52] to-[#42D99A]" : "bg-[#B8E8CF]"}`} style={{ height: `${day.total > 0 ? Math.max((day.total / maxDailyExpense) * 100, 5) : 3}%` }} />
+                <div className="flex h-full w-full items-end overflow-hidden rounded-t-lg bg-white/[0.06]">
+                  <div className={`w-full rounded-t-lg transition-[height] duration-700 ${index === 6 ? "bg-gradient-to-t from-[#147D52] to-[#42D99A] shadow-[0_0_20px_rgba(66,217,154,0.25)]" : "bg-[#2E6047]"}`} style={{ height: `${day.total > 0 ? Math.max((day.total / maxDailyExpense) * 100, 5) : 3}%` }} />
                 </div>
-                <span className={`text-[11px] ${index === 6 ? "font-bold text-[#147D52]" : "text-[#929B95]"}`}>{day.label}</span>
+                <span className={`font-mono text-[10px] ${index === 6 ? "font-bold text-[#42D99A]" : "text-white/35"}`}>{day.label}</span>
               </div>
             ))}
           </div>
-          <div className="mt-5 flex items-end justify-between border-t border-[#EEF1EE] pt-4">
-            <div><p className="text-xs text-[#7A847E]">Total in this period</p><p className="mt-1 text-lg font-semibold tracking-tight">{money.format(weeklyExpenses)}</p></div>
-            <span className="rounded-full bg-[#F5F7F5] px-3 py-1.5 text-xs font-medium text-[#68736C]">7-day view</span>
+          <div className="mt-5 flex items-end justify-between border-t border-white/10 pt-4">
+            <div><p className="text-xs text-white/45">Total in this period</p><p className="mt-1 text-2xl font-semibold tracking-[-0.05em]">{money.format(weeklyExpenses)}</p></div>
+            <span className="rounded-full bg-white/[0.07] px-3 py-1.5 font-mono text-[10px] font-medium text-white/60">7-day view</span>
           </div>
         </article>
 
