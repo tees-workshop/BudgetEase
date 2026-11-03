@@ -205,3 +205,56 @@ a:active, button:active { transform: scale(.98); }
     clip-path: none !important;
   }
 }
+
+
+/* A richer motion language: reveals, text, charts and tactile interactions */
+.brand-lockup { gap: 0; transform-origin: left center; transition: transform 360ms cubic-bezier(.2,.8,.2,1), filter 360ms ease; }
+.brand-lockup:hover { transform: translateY(-1px); filter: drop-shadow(0 5px 14px rgba(216,255,112,.16)); }
+.brand-letter { overflow: visible; flex: none; }
+.brand-wordmark { font-family: Arial, Helvetica, sans-serif; }
+.brand-period { color: #D8FF70; margin-left: 1px; }
+.headline-line { display: block; overflow: hidden; padding-bottom: .07em; margin-bottom: -.07em; }
+.headline-word { display: inline-block; transform: translate3d(0,115%,0) rotate(1.5deg); opacity: 0; animation: word-arrive 950ms cubic-bezier(.16,1,.3,1) both; }
+@keyframes word-arrive {
+  0% { opacity: 0; transform: translate3d(0,115%,0) rotate(1.5deg); }
+  72% { opacity: 1; }
+  100% { opacity: 1; transform: translate3d(0,0,0) rotate(0); }
+}
+.dashboard-title { animation: title-focus 900ms cubic-bezier(.16,1,.3,1) both; }
+@keyframes title-focus {
+  from { opacity: 0; transform: translateY(20px); filter: blur(8px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+.page-enter { animation: page-enter 520ms cubic-bezier(.2,.8,.2,1) both; }
+@keyframes page-enter { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.scroll-reveal.is-visible .preview-bar { transform-origin: bottom; animation: bar-rise 850ms cubic-bezier(.2,.8,.2,1) both; }
+.scroll-reveal.is-visible .preview-bar:nth-child(3n + 1) { animation-delay: 80ms; }
+.scroll-reveal.is-visible .preview-bar:nth-child(3n + 2) { animation-delay: 150ms; }
+.scroll-reveal.is-visible .preview-bar:nth-child(3n) { animation-delay: 220ms; }
+@keyframes bar-rise { from { transform: scaleY(.05); opacity: .35; } to { transform: scaleY(1); opacity: 1; } }
+.scroll-reveal.is-visible .dashboard-chart-bar { transform-origin: bottom; animation: bar-rise 950ms cubic-bezier(.2,.8,.2,1) both; }
+.scroll-reveal.is-visible .dashboard-chart-bar:nth-child(2) { animation-delay: 80ms; }
+.scroll-reveal.is-visible .dashboard-chart-bar:nth-child(3) { animation-delay: 160ms; }
+.scroll-reveal.is-visible .dashboard-chart-bar:nth-child(4) { animation-delay: 240ms; }
+.scroll-reveal.is-visible .dashboard-chart-bar:nth-child(5) { animation-delay: 320ms; }
+.scroll-reveal.is-visible .dashboard-chart-bar:nth-child(6) { animation-delay: 400ms; }
+.scroll-reveal.is-visible .dashboard-chart-bar:nth-child(7) { animation-delay: 480ms; }
+.transaction-row { transition: background-color 260ms ease, padding 260ms ease, transform 260ms ease; }
+.transaction-row:hover { background: rgba(216,255,112,.12); transform: translateX(5px); padding-left: 9px; padding-right: 9px; }
+.reveal-stagger > * { transition-timing-function: cubic-bezier(.16,1,.3,1); }
+.reveal-stagger.is-visible > *:nth-child(1) { transition-delay: 80ms; }
+.reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 190ms; }
+.reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 300ms; }
+.reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 410ms; }
+.reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 520ms; }
+.motion-card { transition: transform 420ms cubic-bezier(.16,1,.3,1), box-shadow 420ms ease, border-color 420ms ease; }
+.motion-card:hover { transform: translateY(-8px) scale(1.012); box-shadow: 0 25px 55px rgba(13,23,18,.16); }
+button, a { transition-timing-function: cubic-bezier(.16,1,.3,1); }
+header nav a { position: relative; }
+header nav a::after { content: ""; position: absolute; left: 0; right: 100%; bottom: -7px; height: 2px; background: #D8FF70; transition: right 280ms cubic-bezier(.16,1,.3,1); }
+header nav a:hover::after { right: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .headline-word, .dashboard-title, .page-enter, .scroll-reveal.is-visible .preview-bar, .scroll-reveal.is-visible .dashboard-chart-bar {
+    animation: none !important; opacity: 1 !important; transform: none !important; filter: none !important;
+  }
+}
