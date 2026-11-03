@@ -272,3 +272,20 @@ header nav a:hover::after { right: 0; }
 @media (prefers-reduced-motion: reduce) {
   .preview-float, .dashboard-hero { animation: none !important; }
 }
+
+
+/* Shared app chrome: dark forest navigation and warm, tactile workspace cards. */
+.app-sidebar { color: #F7F4EB; box-shadow: 10px 0 35px rgba(16,35,26,.035); }
+.app-sidebar > p { color: #8DA392 !important; }
+.app-sidebar nav a:not([aria-current="page"]) { color: #C5D3C7; }
+.app-sidebar nav a:not([aria-current="page"]):hover { background: #1B3426; color: #FFFFFF; }
+.app-sidebar > div:last-child > div:first-child { background: #1B3426; }
+.app-sidebar > div:last-child > div:first-child p:first-of-type { color: #F7F4EB; }
+.app-sidebar > div:last-child > div:first-child p:last-of-type { color: #AAB9AC; }
+.app-sidebar > div:last-child > a:not([aria-current="page"]),
+.app-sidebar > div:last-child > button { color: #C5D3C7; }
+.app-sidebar > div:last-child > a:not([aria-current="page"]):hover { background: #1B3426; color: #FFFFFF; }
+.app-sidebar > div:last-child > button:hover { background: rgba(211,90,90,.12); color: #F2A3A3; }
+.app-sidebar > div:last-child > div:last-child { border-color: #294333; }
+.app-sidebar > div:last-child > div:last-child p:first-child { color: #F7F4EB; }
+.app-sidebar > div:last-child > div:last-child p:last-child { color: #AAB9AC; }
