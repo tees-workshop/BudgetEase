@@ -149,3 +149,59 @@ a, button, input, select, textarea {
   background-size: 38px 38px;
   mask-image: linear-gradient(to bottom, black, transparent 92%);
 }
+
+
+/* Scroll-led motion system */
+@keyframes headline-rise {
+  from { opacity: 0; transform: translate3d(0, 30px, 0); clip-path: inset(0 0 35% 0); }
+  to { opacity: 1; transform: translate3d(0, 0, 0); clip-path: inset(0 0 0 0); }
+}
+@keyframes logo-pop {
+  0% { transform: scale(.82) rotate(-12deg); }
+  65% { transform: scale(1.08) rotate(3deg); }
+  100% { transform: scale(1) rotate(0); }
+}
+.scroll-reveal {
+  opacity: 0;
+  transform: translate3d(0, 34px, 0) scale(.985);
+  filter: blur(3px);
+  transition:
+    opacity 760ms cubic-bezier(.2,.75,.2,1),
+    transform 760ms cubic-bezier(.2,.75,.2,1),
+    filter 760ms cubic-bezier(.2,.75,.2,1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
+}
+.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0);
+}
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translate3d(0, 22px, 0);
+  transition: opacity 650ms cubic-bezier(.2,.75,.2,1), transform 650ms cubic-bezier(.2,.75,.2,1);
+}
+.reveal-stagger.is-visible > * { opacity: 1; transform: translate3d(0,0,0); }
+.reveal-stagger.is-visible > *:nth-child(1) { transition-delay: 70ms; }
+.reveal-stagger.is-visible > *:nth-child(2) { transition-delay: 150ms; }
+.reveal-stagger.is-visible > *:nth-child(3) { transition-delay: 230ms; }
+.reveal-stagger.is-visible > *:nth-child(4) { transition-delay: 310ms; }
+.reveal-stagger.is-visible > *:nth-child(5) { transition-delay: 390ms; }
+.reveal-stagger.is-visible > *:nth-child(6) { transition-delay: 470ms; }
+.headline-reveal { animation: headline-rise 950ms cubic-bezier(.2,.75,.2,1) both; }
+.brand-mark { box-shadow: 0 5px 16px rgba(216,255,112,.14); transition: transform 420ms cubic-bezier(.2,.8,.2,1), box-shadow 420ms ease; }
+.brand-mark:hover { transform: rotate(-8deg) scale(1.06); box-shadow: 0 10px 24px rgba(216,255,112,.25); }
+.motion-card, .interactive-lift { transition-duration: 320ms; }
+.motion-card:hover { transform: translateY(-6px) scale(1.008); }
+a:active, button:active { transform: scale(.98); }
+@media (prefers-reduced-motion: reduce) {
+  .scroll-reveal, .reveal-stagger > *, .headline-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    animation: none !important;
+    transition: none !important;
+    clip-path: none !important;
+  }
+}
