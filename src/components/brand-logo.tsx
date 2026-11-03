@@ -6,7 +6,7 @@ export function BrandLogo({ size = "md", theme = "dark", className = "" }: Brand
     <span
       role="img"
       aria-label="BudgetEase"
-      className={`brand-lockup inline-flex shrink-0 items-center ${theme === "dark" ? "text-white" : "text-[#15221A"} ${className}`}
+      className={`brand-lockup inline-flex shrink-0 items-center ${theme === "dark" ? "text-white" : "text-[#15221A]"} ${className}`}
     >
       <svg
         aria-hidden="true"
