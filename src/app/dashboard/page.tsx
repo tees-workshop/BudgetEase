@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { ArrowDownRight, ArrowRight, ArrowUpRight, BarChart3, Plus, Sparkles, Target, Wallet } from "lucide-react";
 import { redirect } from "next/navigation";
 import { AppShell } from "@/components/app/app-shell";
+import { Reveal } from "@/components/ui/reveal";
 import { createClient } from "@/lib/supabase/server";
 
 export const metadata: Metadata = { title: "Overview" };
@@ -80,7 +81,7 @@ export default async function DashboardPage() {
 
   return (
     <AppShell userName={displayName}>
-      <div className="dashboard-hero animate-float-in relative isolate overflow-hidden rounded-[2rem] bg-[#0D1712] p-6 text-white shadow-[0_28px_80px_rgba(13,23,18,0.22)] sm:p-9 lg:p-11">
+      <Reveal><div className="dashboard-hero relative isolate overflow-hidden rounded-[2rem] bg-[#0D1712] p-6 text-white shadow-[0_28px_80px_rgba(13,23,18,0.22)] sm:p-9 lg:p-11">
         <div aria-hidden="true" className="pointer-events-none absolute -right-16 -top-24 -z-10 h-72 w-72 rounded-full bg-[#31573A]/55 blur-3xl" />\n        <div aria-hidden="true" className="dashboard-grid pointer-events-none absolute inset-0 -z-10 opacity-40" />\n        <div aria-hidden="true" className="pointer-events-none absolute right-[18%] top-[22%] -z-10 h-36 w-36 rounded-full border border-[#42D99A]/20 shadow-[0_0_0_24px_rgba(66,217,154,0.025),0_0_0_52px_rgba(66,217,154,0.02)]" />
         <div aria-hidden="true" className="pointer-events-none absolute bottom-[-9rem] right-1/3 -z-10 h-64 w-64 rounded-full bg-[#D8FF70]/10 blur-3xl" />
         <div className="flex flex-wrap items-start justify-between gap-5">
@@ -119,15 +120,15 @@ export default async function DashboardPage() {
             {income === 0 && <p className="mt-3 text-xs leading-5 text-white/45">Record income to see how spending compares with it.</p>}
           </div>
         </div>
-      </div>
+      </div></Reveal>
 
-      <section className="motion-stagger mt-6 grid gap-x-5 gap-y-2 border-y border-[#DCE5DE] py-3 sm:grid-cols-3" aria-label="Monthly summary">
+      <Reveal><section className="motion-stagger mt-6 grid gap-x-5 gap-y-2 border-y border-[#DCE5DE] py-3 sm:grid-cols-3" aria-label="Monthly summary">
         <SummaryCard label="Money in" value={money.format(income)} hint="Income recorded this month" icon={ArrowDownRight} tone="green" />
         <SummaryCard label="Money out" value={money.format(expenses)} hint="Expenses recorded this month" icon={ArrowUpRight} tone="amber" />
         <SummaryCard label="Net cash flow" value={money.format(net)} hint="Income minus expenses" icon={Wallet} tone={net >= 0 ? "green" : "amber"} />
-      </section>
+      </section></Reveal>
 
-      <section className="mt-5 grid gap-5 xl:grid-cols-[0.9fr_1.1fr]">
+      <Reveal><section className="mt-5 grid gap-5 xl:grid-cols-[0.9fr_1.1fr]">
         <article className="spending-panel motion-card rounded-[1.8rem] border border-[#263D2D] bg-[#111B15] p-5 text-white sm:p-6">
           <div className="flex items-start justify-between gap-4">
             <div><p className="font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-[#D8FF70]">Spending pulse / 07 days</p><h2 className="mt-2 text-2xl font-semibold tracking-[-0.04em]">Where the money moved.</h2><p className="mt-1 text-sm text-white/50">Daily expenses you’ve recorded</p></div>
@@ -160,9 +161,9 @@ export default async function DashboardPage() {
             <div className="mt-4 divide-y divide-[#EEF1EE]">{allTransactions.slice(0, 5).map((transaction) => <div key={transaction.id} className="flex items-center gap-3 py-3.5 first:pt-0 last:pb-0"><span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl ${transaction.type === "income" ? "bg-[#D8FF70] text-[#152A1E]" : "bg-[#FFF3E2] text-[#A76722]"}`}>{transaction.type === "income" ? <ArrowDownRight size={18} /> : <ArrowUpRight size={18} />}</span><div className="min-w-0 flex-1"><p className="truncate text-sm font-semibold">{transaction.description || (transaction.type === "income" ? "Income" : "Expense")}</p><p className="mt-1 text-xs text-[#7A847E]">{new Date(`${transaction.transaction_date}T00:00:00`).toLocaleDateString("en-NG", { day: "numeric", month: "short", year: "numeric" })}</p></div><p className={`shrink-0 text-sm font-bold ${transaction.type === "income" ? "text-[#426F37]" : "text-[#303A33]"}`}>{transaction.type === "income" ? "+" : "−"}{money.format(Number(transaction.amount))}</p></div>)}</div>
           )}
         </article>
-      </section>
+      </section></Reveal>
 
-      <section className="mt-5 grid gap-4 md:grid-cols-2">
+      <Reveal className="mt-5"><section className="grid gap-4 md:grid-cols-2">
         <Link href="/insights" className="interactive-lift group relative isolate overflow-hidden rounded-3xl bg-[#E5F8EE] p-6 sm:p-7">
           <div aria-hidden="true" className="absolute -right-8 -top-12 -z-10 h-40 w-40 rounded-full bg-[#D8FF70]/30 blur-2xl transition-transform duration-500 group-hover:scale-125" />
           <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-[#426F37] shadow-sm"><Sparkles size={20} /></span>
@@ -174,7 +175,7 @@ export default async function DashboardPage() {
           <h2 className="mt-5 text-xl font-semibold tracking-tight">Give every naira a plan.</h2><p className="mt-2 max-w-md text-sm leading-6 text-[#68736C]">Set a monthly limit for a category and check your progress as you go.</p>
           <span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-[#426F37]">Manage budgets <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" /></span>
         </Link>
-      </section>
+      </section></Reveal>
       <p className="mt-6 text-center text-xs leading-5 text-[#929B95]">Summaries reflect transactions you’ve entered. They are not a bank balance or financial advice.</p>
     </AppShell>
   );
