@@ -14,7 +14,7 @@ function Brand() {
 }
 
 function DashboardPreview() {
-  return <div className="relative mx-auto w-full max-w-[590px] animate-float-in delay-150">
+  return <div className="relative mx-auto w-full max-w-[590px] preview-float animate-float-in delay-150">
     <div className="absolute -right-5 -top-5 z-20 hidden rotate-6 rounded-2xl bg-[#D8FF70] px-4 py-3 text-[#14271C] shadow-xl sm:block"><p className="font-mono text-[9px] font-bold uppercase tracking-[.16em]">Your money mood</p><p className="mt-1 text-sm font-black">Looking up ↗</p></div>
     <div className="absolute -bottom-5 -left-5 z-20 hidden -rotate-3 rounded-2xl border border-white/10 bg-[#F9C7A8] px-4 py-3 text-[#542B1D] shadow-xl sm:block"><p className="font-mono text-[9px] font-bold uppercase tracking-[.16em]">This month</p><p className="mt-1 text-sm font-black">₦178,000 left over</p></div>
     <div className="overflow-hidden rounded-[2rem] border border-white/15 bg-[#F7F4EB] p-4 text-[#15221A] shadow-[0_35px_100px_rgba(0,0,0,.38)] sm:p-6">
