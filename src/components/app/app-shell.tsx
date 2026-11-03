@@ -36,7 +36,7 @@ export function AppShell({ children, userName }: { children: React.ReactNode; us
   const initials = userName.trim().split(/\s+/).slice(0, 2).map((part) => part[0]?.toUpperCase()).join("") || "Y";
 
   return (
-    <div className="min-h-screen bg-[#F1EEE5] text-[#151A18]">
+    <div className="min-h-screen bg-[#F7F4EB] text-[#15221A]">
       {mobileOpen && <button aria-label="Close navigation" className="fixed inset-0 z-40 bg-[#151A18]/40 lg:hidden" onClick={() => setMobileOpen(false)} />}
       <aside className={`app-sidebar fixed inset-y-0 left-0 z-50 flex w-[252px] flex-col border-r border-[#263C2F] bg-[#10231A] px-4 py-5 transition-transform lg:translate-x-0 ${mobileOpen ? "translate-x-0" : "-translate-x-full"}`}>
         <div className="flex items-center justify-between px-2">
@@ -61,9 +61,9 @@ export function AppShell({ children, userName }: { children: React.ReactNode; us
       </aside>
 
       <div className="min-h-screen lg:pl-[252px]">
-        <header className="sticky top-0 z-30 flex h-[68px] items-center justify-between border-b border-[#E2E0D5] bg-[#FFFCF5]/95 px-4 backdrop-blur sm:px-7 lg:px-9">
+        <header className="sticky top-0 z-30 flex h-[72px] items-center justify-between border-b border-[#E2E0D5] bg-[#F7F4EB]/90 px-4 backdrop-blur-xl sm:px-7 lg:px-9">
           <div className="flex items-center gap-3"><button className="rounded-xl border border-[#E2E0D5] p-2 text-[#68736C] hover:bg-[#F1EEE5] lg:hidden" onClick={() => setMobileOpen(true)} aria-label="Open navigation"><Menu size={19} /></button><div><p className="text-xs text-[#7A847E]">Your money, your pace</p><p className="text-sm font-bold">Personal finances</p></div></div>
-          <div className="flex items-center gap-2 rounded-full border border-[#E2E0D5] bg-[#FFFCF5] px-3 py-2 text-xs font-semibold text-[#68736C]"><span className="h-2 w-2 rounded-full bg-[#42D99A]" /> NGN · ₦</div>
+          <div className="flex items-center gap-2 rounded-full border border-[#DCE7C4] bg-[#F0F6D9] px-3 py-2 text-xs font-bold text-[#345A2D]"><span className="h-2 w-2 rounded-full bg-[#42D99A]" /> NGN · ₦</div>
         </header>
         <main className="page-enter mx-auto max-w-[1440px] px-4 py-7 pb-24 sm:px-7 sm:py-9 sm:pb-24 lg:px-9 lg:pb-9">{children}</main>
       </div>
