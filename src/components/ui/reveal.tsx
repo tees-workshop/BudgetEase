@@ -12,8 +12,10 @@ type RevealProps = {
 export function Reveal({ children, className = "", delay = 0, once = true }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
+  const [armed, setArmed] = useState(false);
 
   useEffect(() => {
+    setArmed(true);
     const node = ref.current;
     if (!node) return;
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
@@ -32,5 +34,5 @@ export function Reveal({ children, className = "", delay = 0, once = true }: Rev
     return () => observer.disconnect();
   }, [once]);
 
-  return <div ref={ref} className={`scroll-reveal ${visible ? "is-visible" : ""} ${className}`} style={{ "--reveal-delay": `${delay}ms` } as React.CSSProperties}>{children}</div>;
+  return <div ref={ref} className={`${armed ? "scroll-reveal" : ""} ${visible ? "is-visible" : ""} ${className}`} style={{ "--reveal-delay": `${delay}ms` } as React.CSSProperties}>{children}</div>;
 }
