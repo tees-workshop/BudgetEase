@@ -29,7 +29,7 @@ function SummaryCard({ label, value, hint, icon: Icon, tone }: {
   };
 
   return (
-    <article className="metric-editorial relative border-l-2 border-[#42D99A] bg-transparent py-4 pl-5 pr-3 sm:py-5">
+    <article className="metric-editorial relative">
       <div className="flex items-center justify-between gap-3"><p className="text-sm font-medium text-[#68736C]">{label}</p><span className={`flex h-9 w-9 items-center justify-center rounded-xl ${tones[tone]}`}><Icon size={18} /></span></div>
       <CountUp value={value} className="mt-4 block break-words text-2xl font-semibold tracking-[-0.06em] text-[#151A18] sm:text-3xl" />
       <p className="mt-2 text-xs text-[#7A847E]">{hint}</p>
