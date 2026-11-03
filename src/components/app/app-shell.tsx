@@ -5,9 +5,10 @@ import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
 import {
   BarChart3, ChevronDown, CircleHelp, CreditCard, LayoutDashboard,
-  Leaf, Lightbulb, LogOut, Menu, MoreHorizontal, Settings, Target, X,
+  Lightbulb, LogOut, Menu, MoreHorizontal, Settings, Target, X,
 } from "lucide-react";
 import { createClient } from "@/lib/supabase/client";
+import { BrandMark } from "@/components/brand-mark";
 
 const navigation = [
   { href: "/dashboard", label: "Overview", icon: LayoutDashboard },
@@ -39,7 +40,7 @@ export function AppShell({ children, userName }: { children: React.ReactNode; us
       {mobileOpen && <button aria-label="Close navigation" className="fixed inset-0 z-40 bg-[#151A18]/40 lg:hidden" onClick={() => setMobileOpen(false)} />}
       <aside className={`fixed inset-y-0 left-0 z-50 flex w-[252px] flex-col border-r border-[#E2E0D5] bg-white px-4 py-5 transition-transform lg:translate-x-0 ${mobileOpen ? "translate-x-0" : "-translate-x-full"}`}>
         <div className="flex items-center justify-between px-2">
-          <Link href="/dashboard" className="inline-flex items-center gap-2.5" onClick={() => setMobileOpen(false)}><span className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#152A1E] text-[#D8FF70]"><Leaf size={19} /></span><span className="text-lg font-bold tracking-[-0.04em]">BudgetEase<span className="text-[#426F37]">.</span></span></Link>
+          <Link href="/dashboard" className="inline-flex items-center gap-2.5" onClick={() => setMobileOpen(false)}><BrandMark size={36} className="rounded-xl" /><span className="text-lg font-bold tracking-[-0.04em]">BudgetEase<span className="text-[#426F37]">.</span></span></Link>
           <button className="rounded-lg p-2 text-[#68736C] hover:bg-[#F1EEE5] lg:hidden" aria-label="Close menu" onClick={() => setMobileOpen(false)}><X size={18} /></button>
         </div>
 
