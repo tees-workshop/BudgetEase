@@ -258,3 +258,17 @@ header nav a:hover::after { right: 0; }
     animation: none !important; opacity: 1 !important; transform: none !important; filter: none !important;
   }
 }
+
+@keyframes preview-drift {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-9px) rotate(.25deg); }
+}
+.preview-float { animation: float-in .65s cubic-bezier(.2,.8,.2,1) both, preview-drift 8s ease-in-out 800ms infinite; }
+.dashboard-hero { animation: hero-settle 900ms cubic-bezier(.16,1,.3,1) both; }
+@keyframes hero-settle {
+  from { opacity: 0; transform: translateY(18px) scale(.992); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .preview-float, .dashboard-hero { animation: none !important; }
+}
