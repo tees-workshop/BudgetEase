@@ -65,7 +65,7 @@ export function AppShell({ children, userName }: { children: React.ReactNode; us
           <div className="flex items-center gap-3"><button className="rounded-xl border border-[#E2E0D5] p-2 text-[#68736C] hover:bg-[#F1EEE5] lg:hidden" onClick={() => setMobileOpen(true)} aria-label="Open navigation"><Menu size={19} /></button><div><p className="text-xs text-[#7A847E]">Your money, your pace</p><p className="text-sm font-bold">Personal finances</p></div></div>
           <div className="flex items-center gap-2 rounded-full border border-[#E2E0D5] bg-[#FFFCF5] px-3 py-2 text-xs font-semibold text-[#68736C]"><span className="h-2 w-2 rounded-full bg-[#42D99A]" /> NGN · ₦</div>
         </header>
-        <main className="page-enter mx-auto max-w-[1440px px-4 py-7 pb-24 sm:px-7 sm:py-9 sm:pb-24 lg:px-9 lg:pb-9">{children}</main>
+        <main className="page-enter mx-auto max-w-[1440px] px-4 py-7 pb-24 sm:px-7 sm:py-9 sm:pb-24 lg:px-9 lg:pb-9">{children}</main>
       </div>
       <nav className="fixed inset-x-0 bottom-0 z-30 grid grid-cols-5 border-t border-[#E2E0D5] bg-[#FFFCF5]/95 px-2 pb-[max(env(safe-area-inset-bottom),8px)] pt-2 backdrop-blur lg:hidden" aria-label="Mobile navigation">
         {navigation.filter((item) => ["/dashboard", "/transactions", "/budgets", "/insights"].includes(item.href)).map(({ href, label, icon: Icon }) => {
