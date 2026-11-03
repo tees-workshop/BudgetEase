@@ -84,14 +84,14 @@ export default async function DashboardPage() {
       <Reveal><div className="dashboard-hero relative isolate overflow-hidden rounded-[2rem] bg-[#0D1712] p-6 text-white shadow-[0_28px_80px_rgba(13,23,18,0.22)] sm:p-9 lg:p-11">
         <div aria-hidden="true" className="pointer-events-none absolute -right-16 -top-24 -z-10 h-72 w-72 rounded-full bg-[#31573A]/55 blur-3xl" />\n        <div aria-hidden="true" className="dashboard-grid pointer-events-none absolute inset-0 -z-10 opacity-40" />\n        <div aria-hidden="true" className="pointer-events-none absolute right-[18%] top-[22%] -z-10 h-36 w-36 rounded-full border border-[#42D99A]/20 shadow-[0_0_0_24px_rgba(66,217,154,0.025),0_0_0_52px_rgba(66,217,154,0.02)]" />
         <div aria-hidden="true" className="pointer-events-none absolute bottom-[-9rem] right-1/3 -z-10 h-64 w-64 rounded-full bg-[#D8FF70]/10 blur-3xl" />
-        <div className="flex flex-wrap items-start justify-between gap-5">
+        <div className="reveal-stagger flex flex-wrap items-start justify-between gap-5">
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-[#D8FF70]/30 bg-[#D8FF70]/[0.12] px-3 py-1.5 font-mono text-[10px] font-semibold uppercase tracking-[0.16em] text-white/80">
               <span className="h-1.5 w-1.5 rounded-full bg-[#D8FF70] shadow-[0_0_10px_rgba(66,217,154,0.9)]" />
               Your money, in focus
             </div>
             <p className="mt-5 text-sm text-white/55">{monthLabel}</p>
-            <h1 className="mt-2 text-4xl font-semibold tracking-[-0.065em] sm:text-5xl lg:text-6xl">Good day, <span className="text-[#D8FF70]">{displayName.split(" ")[0]}.</span></h1>
+            <h1 className="headline-reveal mt-2 text-4xl font-semibold tracking-[-0.065em] sm:text-5xl lg:text-6xl">Good day, <span className="text-[#D8FF70]">{displayName.split(" ")[0]}.</span></h1>
             <p className="mt-2 max-w-lg text-sm leading-6 text-white/65">A clearer view of what came in, what went out, and where you stand this month.</p>
           </div>
           <Link href="/transactions?new=1" className="interactive-lift inline-flex items-center justify-center gap-2 rounded-xl bg-[#D8FF70] px-4 py-3 text-sm font-bold text-[#102219] shadow-[0_8px_24px_rgba(66,217,154,0.16)] hover:bg-[#65e5ae]">
